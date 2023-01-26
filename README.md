@@ -74,6 +74,43 @@ The input data is a LAS file with specified features and <code>classification</c
 }
 ```
 
-### Step 2 : Model training using labeled data
+Thus, the command could be :
 
-Once the model is trained, it can be used to make predictions on new, unseen data.
+```
+semseg train config.json
+```
+
+The output is the model with the best parameters, saved as a <code>pickle</code> file in <code>./output/model</code>.
+Pickling a model and saving it to disk allows you to save the state of the model, including all its trained parameters, so that it can be loaded and used again later without having to retrain the model from scratch. This is useful in cases where training a model takes a long time, or if you want to share a trained model with others.
+
+### Step 2 : Predictions
+
+Once the model is trained, it can be used to make predictions on new, unseen data. This is done by providing the model with input data, and the model generates an output, which is a <code>LAS</code> file with <code>classification</code> as a new scalar field.
+
+This is done using the second command <code>predict</code>. Use <code>semseg predict --help</code> to see the detailed help:
+
+```
+Usage: semseg predict [OPTIONS] CONFIG POINTCLOUD MODEL
+
+  Perform semantic segmentation using pre-trained model.
+
+Options:
+  --regularize BOOLEAN  If checked the input data will be regularized.      
+                        [default: False]
+  -n INTEGER            Number of neighbors to use if regularization is set.
+                        [default: 10]
+  --filename PATH       Write the classified point cloud in a .LAS file.    
+                        [required]
+  --help                Show this message and exit.
+```
+
+#### Basic usage
+
+```
+semseg predict config.json unclassified.las ./output/model/ne60_mdNone.pkl --filename classified.las
+```
+
+This uses the trained model stored as pickle file <code>ne60_mdNone.pkl</code> to perfoem semantic segmentation on <code>unclassified.las</code>. The output is named <code>classified.las</code> and can be found in the folder <code>./output/prediction</code>.
+
+#### Regularization
+

@@ -128,8 +128,8 @@ In this example, <code>regularization</code> is enabled and the number of neighb
 
 ## Requirements on the Point Cloud
 
-- Classified with scalar field named <code>classification</code>
-- Contains all the features specified in the <code>configuration</code> file. This applies for labeled and unseen data.
+- The training data should be classified with scalar field named <code>classification</code>
+- The labeled and unseen data should contain all the features specified in the <code>configuration</code> file
 - Supported formats: <code>.LAS</code> <code>.LAZ</code>
 
 ## Citation

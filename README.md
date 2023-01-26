@@ -132,5 +132,18 @@ In this example, <code>regularization</code> is enabled and the number of neighb
 - Contains all the features specified in the <code>configuration</code> file. This applies for labeled and unseen data.
 - Supported formats: <code>.LAS</code> <code>.LAZ</code>
 
-## About ZRect3D
+## Citation
+
+If you find our work useful in your research, please consider citing:
+
+```bibtex
+@inproceedings{NICE2020,
+  title={TESSERAE3D: A BENCHMARK FOR TESSERAE SEMANTIC SEGMENTATION IN 3D POINT CLOUDS},
+  author={Kharroubi, A., Van Wersch, L., Billen, R., and Poux, F.},
+  booktitle={ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci., V-2-2021, 121–128},
+  year={2021}
+}
+```
+
+## About Semseg
 This software was developped by [Kharroubi Abderrazzaq](https://github.com/akharroubi) and [Anass Yarroudh](https://github.com/Yarroudh), researchers at the Geomatics Unit of the University of Liege. For more detailed information please contact us via <akharroubi@uliege.be> or <ayarroudh@uliege.be>, we are pleased to send you the necessary information.

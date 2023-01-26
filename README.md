@@ -44,7 +44,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-The input data is a LAS file with specified features and <code>classification</code> field that respresents the label. The command takes one argument which is a <code>JSON</code> file that contains the features to use, the training data path and the algorithm parameters:
+The input data is a LAS file with specified features and <code>classification</code> field that respresents the label. The command takes one argument which is a <code>JSON</code> file that contains the features to use, the training data path and the algorithm parameters, as shown in this example:
 
 ```json
 {

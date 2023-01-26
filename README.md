@@ -14,17 +14,17 @@ The easiest way to install <code>Semseg</code> on Windows is to use the binary p
 After installation, you have a small program called <code>semseg</code>. Use <code>semseg --help</code> to see the detailed help:
 
 ```
-  Usage: semseg [OPTIONS] COMMAND [ARGS]...
+Usage: semseg [OPTIONS] COMMAND [ARGS]...
 
-    CLI tool to perform semantic segmentation of 3D point clouds using Random
-    Forest algorithm.
+  CLI tool to perform semantic segmentation of 3D point clouds using Random
+  Forest algorithm.
 
-  Options:
-    --help  Show this message and exit.
+Options:
+  --help  Show this message and exit.
 
-  Commands:
-    train    Train the model for semantic segmentation of 3D point clouds.   
-    predict  Perform semantic segmentation using pre-trained model.
+Commands:
+  train    Train the model for semantic segmentation of 3D point clouds.   
+  predict  Perform semantic segmentation using pre-trained model.
 ```
 
 The process consists of two distinct steps or <code>commands</code> :
@@ -46,32 +46,32 @@ Options:
 
 The input data is a LAS file with specified features and <code>classification</code> field that respresents the label. The command takes one argument which is a <code>JSON</code> file that contains the features to use, the training data path and the algorithm parameters:
 
-```
-  {
-      "features": ["green", "Verticality16", "Verticality8", "Linearity16", "Linearity8", "Planarity16", "Planarity8", "Surfacevariation5", "Numberneighbors10"],
-      "label": ["Ground", "Vegetation", "Rail", "Catenary pole", "Cable", "Infrastructure"],
-      "training_data": "C:/Users/Administrateur/Desktop/railway.las",
-      "parameters": {
-          "n_estimators": [20, 40, 60],
-          "criterion": "gini",
-          "max_depths": null,
-          "min_samples_split": 2,
-          "min_samples_leaf": 1,
-          "min_weight_fraction_leaf": 0,
-          "max_features": "sqrt",
-          "max_leaf_nodes": null,
-          "min_impurity_decrease": 0.0,
-          "bootstrap": true,
-          "oob_score": false,
-          "n_jobs": null,
-          "random_state": null,
-          "verbose": 0,
-          "warm_start": false,
-          "class_weight": null,
-          "ccp_alpha": 0.0,
-          "max_samples": null
-      }
-  }
+```json
+{
+    "features": ["green", "Verticality16", "Verticality8", "Linearity16", "Linearity8", "Planarity16", "Planarity8", "Surfacevariation5", "Numberneighbors10"],
+    "label": ["Ground", "Vegetation", "Rail", "Catenary pole", "Cable", "Infrastructure"],
+    "training_data": "C:/Users/Administrateur/Desktop/railway.las",
+    "parameters": {
+        "n_estimators": [20, 40, 60],
+        "criterion": "gini",
+        "max_depths": null,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "min_weight_fraction_leaf": 0,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "bootstrap": true,
+        "oob_score": false,
+        "n_jobs": null,
+        "random_state": null,
+        "verbose": 0,
+        "warm_start": false,
+        "class_weight": null,
+        "ccp_alpha": 0.0,
+        "max_samples": null
+    }
+}
 ```
 
 ### Step 2 : Model training using labeled data

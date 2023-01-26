@@ -97,7 +97,7 @@ Usage: semseg predict [OPTIONS] CONFIG POINTCLOUD MODEL
 Options:
   --regularize BOOLEAN  If checked the input data will be regularized.      
                         [default: False]
-  -n INTEGER            Number of neighbors to use if regularization is set.
+  -k INTEGER            Number of neighbors to use if regularization is set.
                         [default: 10]
   --filename PATH       Write the classified point cloud in a .LAS file.    
                         [required]
@@ -114,3 +114,23 @@ This uses the trained model stored as pickle file <code>ne60_mdNone.pkl</code> t
 
 #### Regularization
 
+The rendering of the Random Forest can be improved by an algorithm that reduces the noise. The principle of the algorithm is quite simple:
+- For each point, we calculate the K-nearest neighbors 
+- We calculate the percentage of each class among these K-nearest neighbors 
+- If the majority class is present in the environment at more than X% percent, then the point is automatically assigned this class
+This allows to update the value of the classification for specific points to a value determined by a K-nearest neighbors vote.
+
+```
+semseg predict config.json unclassified.las ./output/model/ne60_mdNone.pkl --filename classified.las --regularize True -k 30
+```
+
+In this example, <code>regularization</code> is enabled and the number of neighbors to use is 30.
+
+## Requirements on the Point Cloud
+
+- Classified with scalar field named <code>classification</code>
+- Contains all the features specified in the <code>configuration</code> file. This applies for labeled and unseen data.
+- Supported formats: <code>.LAS</code> <code>.LAZ</code>
+
+## About ZRect3D
+This software was developped by [Kharroubi Abderrazzaq](https://github.com/akharroubi) and [Anass Yarroudh](https://github.com/Yarroudh), researchers at the Geomatics Unit of the University of Liege. For more detailed information please contact us via <akharroubi@uliege.be> or <ayarroudh@uliege.be>, we are pleased to send you the necessary information.

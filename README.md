@@ -101,15 +101,16 @@ The input data is a LAS file with specified features and <code>classification</c
 }
 ```
 
-Thus, the command could be :
+Thus, the command for Random Forest algorithm could be :
+
+```
+semseg train --method RandomForest config.json
+```
+
+Or simply:
 
 ```
 semseg train config.json
-```
-Or:
- 
-```
-semseg train --method RandomForest config.json
 ```
 
 You can also choose to use Gradient Boosting classifier:

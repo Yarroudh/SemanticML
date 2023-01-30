@@ -190,7 +190,7 @@ def predict(config, pointcloud, model, regularize, k, filename):
 
     # Regularization
     if (regularize):
-        neigh = KNeighborsClassifier(n_neighbors=k)
+        neigh = KNeighborsClassifier(n_neighbors=k, n_jobs=configuration["parameters"]["n_jobs"])
         neigh.fit(X, Y)
         Y = neigh.predict(X)
 

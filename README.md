@@ -38,38 +38,65 @@ This is done using the first command <code>train</code>. Use <code>semseg train 
 ```
 Usage: semseg train [OPTIONS] CONFIG
 
-  Train the model for semantic segmentation of 3D point clouds.
+  Train the model for semantic segmentation of 3D point clouds.      
 
 Options:
-  --help  Show this message and exit.
+  --method [RandomForest|GradientBoosting]
+                                  Learning method for classification.
+                                  [default: RandomForest]
+  --help                          Show this message and exit.
 ```
 
 The input data is a LAS file with specified features and <code>classification</code> field that respresents the label. The command takes one argument which is a <code>JSON</code> file that contains the features to use, the training data path and the algorithm parameters, as shown in this example:
 
 ```json
 {
-    "features": ["green", "Verticality16", "Verticality8", "Linearity16", "Linearity8", "Planarity16", "Planarity8", "Surfacevariation5", "Numberneighbors10"],
+    "features": ["red", "blue", "green", "Verticality16", "Verticality8", "Linearity16", "Linearity8", "Planarity16", "Planarity8", "Surfacevariation5", "Numberneighbors10"],
     "label": ["Ground", "Vegetation", "Rail", "Catenary pole", "Cable", "Infrastructure"],
     "training_data": "C:/Users/Administrateur/Desktop/railway.las",
     "parameters": {
-        "n_estimators": [20, 40, 60],
-        "criterion": "gini",
-        "max_depths": null,
-        "min_samples_split": 2,
-        "min_samples_leaf": 1,
-        "min_weight_fraction_leaf": 0,
-        "max_features": "sqrt",
-        "max_leaf_nodes": null,
-        "min_impurity_decrease": 0.0,
-        "bootstrap": true,
-        "oob_score": false,
-        "n_jobs": null,
-        "random_state": null,
-        "verbose": 0,
-        "warm_start": false,
-        "class_weight": null,
-        "ccp_alpha": 0.0,
-        "max_samples": null
+        "RandomForest": {
+            "n_estimators": [50],
+            "criterion": "entropy",
+            "max_depths": null,
+            "min_samples_split": 4,
+            "min_samples_leaf": 4,
+            "min_weight_fraction_leaf": 0,
+            "max_features": "sqrt",
+            "max_leaf_nodes": null,
+            "min_impurity_decrease": 0.0,
+            "bootstrap": true,
+            "oob_score": false,
+            "n_jobs": -1,
+            "random_state": null,
+            "verbose": 0,
+            "warm_start": false,
+            "class_weight": null,
+            "ccp_alpha": 0.0,
+            "max_samples": null
+        },
+        "GradientBoosting": {
+            "n_estimators": [50],
+            "loss":"log_loss",
+            "learning_rate":0.1,
+            "subsample": 1.0,
+            "criterion": "friedman_mse",
+            "min_samples_split": 2,
+            "min_samples_leaf": 1,
+            "min_weight_fraction_leaf": 0.0,
+            "max_depths": [3],
+            "min_impurity_decrease": 0.0,
+            "init": null,
+            "random_state": null,
+            "max_features": null,
+            "verbose": 0,
+            "max_leaf_nodes": null,
+            "warm_start": false,
+            "validation_fraction": 0.1,
+            "n_iter_no_change": null,
+            "tol": 1e-4,
+            "ccp_alpha": 0.0
+        }
     }
 }
 ```
@@ -78,6 +105,17 @@ Thus, the command could be :
 
 ```
 semseg train config.json
+```
+Or:
+ 
+```
+semseg train --method RandomForest config.json
+```
+
+You can also choose to use Gradient Boosting classifier:
+
+```
+semseg train --method GradientBoosting config.json
 ```
 
 The output is the model with the best parameters, saved as a <code>pickle</code> file in <code>./output/model</code>.

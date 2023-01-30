@@ -1,7 +1,7 @@
 {
     "features": ["green", "Verticality16", "Verticality8", "Linearity16", "Linearity8", "Planarity16", "Planarity8", "Surfacevariation5", "Numberneighbors10"],
     "label": ["Ground", "Vegetation", "Rail", "Catenary pole", "Cable", "Infrastructure"],
-    "training_data": "C:/Users/Administrateur/Desktop/railway.las",
+    "training_data": "C:/Users/Administrateur/Desktop/Camille_ENSG2022/training_data/SNCF/railway_000043_feature_coorect.las",
     "parameters": {
         "n_estimators": [20, 40, 60],
         "criterion": "gini",
@@ -14,7 +14,7 @@
         "min_impurity_decrease": 0.0,
         "bootstrap": true,
         "oob_score": false,
-        "n_jobs": null,
+        "n_jobs": 18,
         "random_state": null,
         "verbose": 0,
         "warm_start": false,

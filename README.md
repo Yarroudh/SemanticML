@@ -24,14 +24,14 @@ After installation, you have a small program called <code>semseg</code>. Use <co
 ```
 Usage: semseg [OPTIONS] COMMAND [ARGS]...
 
-  CLI tool to perform semantic segmentation of 3D point clouds using Random
-  Forest algorithm.
+  CLI tool to perform semantic segmentation of 3D point clouds using Machine
+  Learning techniques.
 
 Options:
   --help  Show this message and exit.
 
 Commands:
-  train    Train the model for semantic segmentation of 3D point clouds.   
+  train    Train the model for semantic segmentation of 3D point clouds.    
   predict  Perform semantic segmentation using pre-trained model.
 ```
 

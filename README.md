@@ -3,7 +3,7 @@
 
 ![image](https://user-images.githubusercontent.com/72500344/215734559-efe11019-e88d-4d94-9643-ee00e0be13c9.png)
 
-Semantic segmentation of point clouds is a process of classifying each point in a point cloud into different semantic categories, such as building, road, or vegetation. One approach to accomplish this is by using the Random Forest algorithm. 
+Semantic segmentation of point clouds is the process of classifying each point in a point cloud into different semantic classes, such as building, road, or vegetation. One approach to accomplish this is by using Machine Learning techniques such as Random Forest and Gradient Boosting classifiers. 
 
 **Random Forest** is a type of ensemble learning method that combines multiple decision trees to make predictions. In the context of semantic segmentation of point clouds, each decision tree in the Random Forest model would be trained to classify a point based on its features, such as its location and color. The final prediction for a point would be the majority vote of all the decision trees in the forest. Random Forest has been shown to be effective for semantic segmentation of point clouds due to its ability to handle high-dimensional and noisy data.
 

@@ -15,7 +15,7 @@ Semantic segmentation of point clouds is the process of classifying each point i
 
 ## Installation
 
-The easiest way to install <code>Semseg</code> on Windows is to use the binary package on the Release page. In case you can not use the Windows installer, or if you are using a different operating system, you can build everything from source.
+The easiest way to install <code>Semseg</code> on Windows is to use the binary package on the [Release page](https://github.com/Yarroudh/Semseg/releases/tag/Semseg). In case you can not use the Windows installer, or if you are using a different operating system, you can build everything from source.
 
 ## Usage of the CLI
 

@@ -1,9 +1,13 @@
-# Semantic segmentation of 3D point clouds using Random Forest algorithm
-*CLI tool to train a model using Random Forest algorithm then use it to perform semantic segmentation of 3D point clouds.*
+# Semantic segmentation of 3D point clouds using Machine Learning
+*CLI tool to train a model using Random Forest or Gradient Boosting algorithms then use it to perform semantic segmentation of 3D point clouds.*
 
 ![image](https://user-images.githubusercontent.com/72500344/214625563-d048d13f-b1d5-42c4-afd0-db906ca9f93e.png)
 
-Semantic segmentation of point clouds is a process of classifying each point in a point cloud into different semantic categories, such as building, road, or vegetation. One approach to accomplish this is by using the Random Forest algorithm. Random Forest is a type of ensemble learning method that combines multiple decision trees to make predictions. In the context of semantic segmentation of point clouds, each decision tree in the Random Forest model would be trained to classify a point based on its features, such as its location and color. The final prediction for a point would be the majority vote of all the decision trees in the forest. Random Forest has been shown to be effective for semantic segmentation of point clouds due to its ability to handle high-dimensional and noisy data.
+Semantic segmentation of point clouds is a process of classifying each point in a point cloud into different semantic categories, such as building, road, or vegetation. One approach to accomplish this is by using the Random Forest algorithm. 
+
+**Random Forest** is a type of ensemble learning method that combines multiple decision trees to make predictions. In the context of semantic segmentation of point clouds, each decision tree in the Random Forest model would be trained to classify a point based on its features, such as its location and color. The final prediction for a point would be the majority vote of all the decision trees in the forest. Random Forest has been shown to be effective for semantic segmentation of point clouds due to its ability to handle high-dimensional and noisy data.
+
+**Gradient Boosting** is another Machine Learning technique used for classification tasks. It gives a prediction model in the form of an ensemble of weak prediction models, which are typically decision trees. When a decision tree is the weak learner, the resulting algorithm is called gradient-boosted trees; it usually outperforms random forest. A gradient-boosted trees model is built in a stage-wise fashion as in other boosting methods, but it generalizes the other methods by allowing optimization of an arbitrary differentiable loss function.
 
 ## Installation
 
@@ -31,7 +35,7 @@ The process consists of two distinct steps or <code>commands</code> :
 
 ### Step 1 : Model training using labeled data
 
-Model training is the process of using a set of labeled data, known as the training dataset, to adjust the parameters of Random Forest algorithm so that it can make accurate predictions on new, unseen data. The process of training a model involves providing the model with input-output pairs, where the input represents the features of the data and the output represents the desired label or prediction. The model then adjusts its internal parameters, or weights, to minimize the difference between its predictions and the true labels. This process is repeated multiple times, using a technique called backpropagation and optimization algorithms such as gradient descent. The goal is to find the set of parameters that result in the lowest prediction error on the training data.
+Model training is the process of using a set of labeled data, known as the training dataset, to adjust the parameters of Random Forest algorithm so that it can make accurate predictions on new, unseen data. The process of training a model involves providing the model with input-output pairs, where the input represents the features of the data and the output represents the desired label or prediction. The model then adjusts its internal parameters to minimize the difference between its predictions and the true labels. The goal is to find the set of parameters that result in the lowest prediction error on the training data.
 
 This is done using the first command <code>train</code>. Use <code>semseg train --help</code> to see the detailed help:
 

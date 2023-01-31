@@ -1,4 +1,4 @@
-# Semantic segmentation of 3D point clouds using Machine Learning
+# Semantic segmentation of 3D point clouds using Machine Learning algorithms
 *CLI tool to train a model using Random Forest or Gradient Boosting algorithms then use it to perform semantic segmentation of 3D point clouds.*
 
 ![image](https://user-images.githubusercontent.com/72500344/215734559-efe11019-e88d-4d94-9643-ee00e0be13c9.png)

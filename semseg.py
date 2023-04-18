@@ -16,6 +16,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import jaccard_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
+from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 
 def train_model(method, X_train, Y_train, **kwargs):
@@ -178,6 +179,11 @@ def train(config, method):
         tol = configuration["parameters"]["GradientBoosting"]["tol"]
         ccp_alpha = configuration["parameters"]["GradientBoosting"]["ccp_alpha"]
 
+    # Scale the features using StandardScaler
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
     # Train the model
     print('\nTraining the model')
     best_conf = {'ne' : 0, 'md' : 0} # Best configuration initialisation
@@ -260,21 +266,14 @@ def predict(config, pointcloud, model, regularize, k, filename):
 
     # Regularization
     if (regularize):
-        neigh = KNeighborsClassifier(n_neighbors=k, n_jobs=-1)
+        neigh = KNeighborsClassifier(n_neighbors=k, algorithm='kd_tree', n_jobs=-1)
         neigh.fit(X, Y)
         Y = neigh.predict(X)
 
     # Save the results in LAS file
     header = file.header
-    header.classification = np.asarray(Y)
     las = laspy.LasData(header)
-    las.X = file.X
-    las.Y = file.Y
-    las.Z = file.Z
-    las.red = file.red
-    las.green = file.green
-    las.blue = file.blue
-    las.intensity = file.intensity
+    las.points = file.points
     las.classification = Y
 
     # Export results

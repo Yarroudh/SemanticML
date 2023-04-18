@@ -7,7 +7,6 @@ import time
 import pickle
 import itertools
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -20,8 +19,22 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 
 def train_model(method, X_train, Y_train, **kwargs):
-    ''' 
-    Train the model with the specified parameters and return it.
+    '''
+    Trains the model using the specified method and input data.
+
+    :param method: The name of the classification method to use. Currently supported
+                   options are "RandomForest" and "GradientBoosting".
+    :type method: str
+    :param X_train: The input features for the training data.
+    :type X_train: array-like
+    :param Y_train: The target labels for the training data.
+    :type Y_train: array-like
+    :param kwargs: Additional keyword arguments that are passed on to the classification
+                   model constructor.
+    :type kwargs: dict
+
+    :return: The trained classification model.
+    :rtype: object
     '''
     if (method == "RandomForest"):
         n_estimators = kwargs.get('n_estimators', None)
@@ -73,18 +86,29 @@ def train_model(method, X_train, Y_train, **kwargs):
     return model
 
 def save_model(model, filename):
-    ''' Save the trained machine learning model as .pkl file
-        Attribures:
-            model (np.RandomForestClassifier)   :   Model to save
-            filename (string)                   :   Model output file
+    '''
+    Save the trained machine learning model as a .pkl file.
+
+    :param model: The trained machine learning model.
+    :type model: Union[RandomForestClassifier, GradientBoostingClassifier]
+
+    :param filename: The name of the output file.
+    :type filename: str
+
+    :return: None
     '''
     with open(filename, 'wb') as out:
         pickle.dump(model, out, pickle.HIGHEST_PROTOCOL)
 
 def read_model(filepath):
-    ''' Read the Random Forest model from a .pkl file
-        Attributes:
-            filepath (string)   :   Path to the .pkl file
+    '''
+    Read a machine learning model from a .pkl file.
+
+    :param filepath: The path to the input file.
+    :type filepath: str
+
+    :return: The loaded machine learning model.
+    :rtype: Union[RandomForestClassifier, GradientBoostingClassifier]
     '''
     return pickle.load(open(filepath, 'rb'))
 
@@ -228,6 +252,15 @@ def train(config, method):
     print('\tConfusion matrix:\n{}'.format(confusion_matrix(Y_test, Y_test_pred)))
     print('\tTraining time: {} seconds'.format(time.strftime("%H:%M:%S", time.gmtime(processTime))))
 
+
+@click.command()
+@click.argument('config', type=click.Path(exists=True), required=True)
+@click.argument('pointcloud', type=click.Path(exists=True), required=True)
+@click.argument('model', type=click.Path(exists=True), required=True)
+@click.option('--filename', help='Write the evaluation results to .CSV file.', type=click.Path(exists=False), default='output/evaluation.csv', show_default=True)
+
+def evaluate(config, pointcloud, model, filename):
+    pass
 
 @click.command()
 @click.argument('config', type=click.Path(exists=True), required=True)

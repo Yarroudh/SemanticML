@@ -15,14 +15,26 @@ Semantic segmentation of point clouds is the process of classifying each point i
 
 ## Installation
 
-The easiest way to install <code>Semseg</code> on Windows is to use the binary package on the [Release page](https://github.com/Yarroudh/Semseg/releases/tag/Semseg). In case you can not use the Windows installer, or if you are using a different operating system, you can build everything from source.
+You can install SemanticML from PyPI by easily running:
+
+```bash
+pip install semanticml
+```
+
+You can also build everything from source:
+
+```bash
+git clone https://github.com/Yarroudh/SemanticML
+cd SemanticML
+python setup.py install
+```
 
 ## Usage of the CLI
 
-After installation, you have a small program called <code>semseg</code>. Use <code>semseg --help</code> to see the detailed help:
+After installation, you have a small program called <code>sml</code>. Use <code>sml --help</code> to see the detailed help:
 
 ```
-Usage: semseg [OPTIONS] COMMAND [ARGS]...
+Usage: sml [OPTIONS] COMMAND [ARGS]...
 
   CLI tool to perform semantic segmentation of 3D point clouds using Machine
   Learning techniques.
@@ -41,10 +53,10 @@ The process consists of two distinct steps or <code>commands</code> :
 
 Model training is the process of using a set of labeled data, known as the training dataset, to adjust the parameters of Random Forest algorithm so that it can make accurate predictions on new, unseen data. The process of training a model involves providing the model with input-output pairs, where the input represents the features of the data and the output represents the desired label or prediction. The model then adjusts its internal parameters to minimize the difference between its predictions and the true labels. The goal is to find the set of parameters that result in the lowest prediction error on the training data.
 
-This is done using the first command <code>train</code>. Use <code>semseg train --help</code> to see the detailed help:
+This is done using the first command <code>train</code>. Use <code>sml train --help</code> to see the detailed help:
 
 ```
-Usage: semseg train [OPTIONS] CONFIG
+Usage: sml train [OPTIONS] CONFIG
 
   Train the model for semantic segmentation of 3D point clouds.      
 
@@ -112,19 +124,19 @@ The input data is a LAS file with specified features and <code>classification</c
 Thus, the command for Random Forest algorithm could be:
 
 ```
-semseg train --method RandomForest config.json
+sml train --method RandomForest config.json
 ```
 
 Or simply:
 
 ```
-semseg train config.json
+sml train config.json
 ```
 
 You can also choose to use Gradient Boosting classifier by typing:
 
 ```
-semseg train --method GradientBoosting config.json
+sml train --method GradientBoosting config.json
 ```
 
 The output is the model with the best parameters, saved as a <code>pickle</code> file in <code>./output/model</code>.
@@ -134,10 +146,10 @@ Pickling a model and saving it to disk allows you to save the state of the model
 
 Once the model is trained, it can be used to make predictions on new, unseen data. This is done by providing the model with input data, and the model generates an output, which is a <code>LAS</code> file with <code>classification</code> as a new scalar field.
 
-This is done using the second command <code>predict</code>. Use <code>semseg predict --help</code> to see the detailed help:
+This is done using the second command <code>predict</code>. Use <code>sml predict --help</code> to see the detailed help:
 
 ```
-Usage: semseg predict [OPTIONS] CONFIG POINTCLOUD MODEL
+Usage: sml predict [OPTIONS] CONFIG POINTCLOUD MODEL
 
   Perform semantic segmentation using pre-trained model.
 
@@ -154,7 +166,7 @@ Options:
 #### Basic usage
 
 ```
-semseg predict config.json unclassified.las ./output/model/ne60_mdNone.pkl --filename classified.las
+sml predict config.json unclassified.las ./output/model/ne60_mdNone.pkl --filename classified.las
 ```
 
 This uses the trained model stored as pickle file <code>ne60_mdNone.pkl</code> to perfoem semantic segmentation on <code>unclassified.las</code>. The output is named <code>classified.las</code> and can be found in the folder <code>./output/prediction</code>.
@@ -168,7 +180,7 @@ The rendering of the Random Forest can be improved by an algorithm that reduces 
 This allows to update the value of the classification for specific points to a value determined by a K-nearest neighbors vote.
 
 ```
-semseg predict config.json unclassified.las ./output/model/ne60_mdNone.pkl --filename classified.las --regularize True -k 30
+sml predict config.json unclassified.las ./output/model/ne60_mdNone.pkl --filename classified.las --regularize True -k 30
 ```
 
 In this example, <code>regularization</code> is enabled and the number of neighbors to use is 30.
@@ -192,5 +204,5 @@ If you find our work useful in your research, please consider citing:
 }
 ```
 
-## About Semseg
+## About SemanticML
 This software was developped by [Kharroubi Abderrazzaq](https://github.com/akharroubi) and [Anass Yarroudh](https://github.com/Yarroudh), researchers at the Geomatics Unit of the University of Liege. For more detailed information please contact us via <akharroubi@uliege.be> or <ayarroudh@uliege.be>, we are pleased to send you the necessary information.

@@ -252,16 +252,6 @@ def train(config, method):
     print('\tConfusion matrix:\n{}'.format(confusion_matrix(Y_test, Y_test_pred)))
     print('\tTraining time: {} seconds'.format(time.strftime("%H:%M:%S", time.gmtime(processTime))))
 
-
-@click.command()
-@click.argument('config', type=click.Path(exists=True), required=True)
-@click.argument('pointcloud', type=click.Path(exists=True), required=True)
-@click.argument('model', type=click.Path(exists=True), required=True)
-@click.option('--filename', help='Write the evaluation results to .CSV file.', type=click.Path(exists=False), default='output/evaluation.csv', show_default=True)
-
-def evaluate(config, pointcloud, model, filename):
-    pass
-
 @click.command()
 @click.argument('config', type=click.Path(exists=True), required=True)
 @click.argument('pointcloud', type=click.Path(exists=True), required=True)

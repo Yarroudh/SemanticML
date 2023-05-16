@@ -15,13 +15,7 @@ Semantic segmentation of point clouds is the process of classifying each point i
 
 ## Installation
 
-You can install SemanticML from PyPI by easily running:
-
-```bash
-pip install semanticml
-```
-
-You can also build everything from source:
+You can install SemanticML from source by easily running:
 
 ```bash
 git clone https://github.com/Yarroudh/SemanticML

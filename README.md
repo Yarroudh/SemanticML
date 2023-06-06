@@ -1,5 +1,5 @@
 # Semantic segmentation of 3D point clouds using Machine Learning algorithms
-*Command-Line Interface (CLI) application to perform semantic segmentation of 3D unorganized point clouds using Machine Learning techniques.*
+*A package for semantic segmentation of 3D unorganized point clouds using Machine Learning techniques.*
 
 ![image](https://user-images.githubusercontent.com/72500344/215734559-efe11019-e88d-4d94-9643-ee00e0be13c9.png)
 

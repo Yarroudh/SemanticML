@@ -44,6 +44,22 @@
             "n_iter_no_change": null,
             "tol": 1e-4,
             "ccp_alpha": 0.0
+        },
+        "HoeffdingTree": {
+            "chunk_size": 500000,
+            "max_byte_size": 33554432,
+            "memory_estimate_period": 1000000,
+            "grace_period": 200,
+            "split_criterion": "info_gain",
+            "split_confidence": 0.0000001,
+            "tie_threshold": 0.05,
+            "binary_split": false,
+            "stop_mem_management": false,
+            "remove_poor_atts": false,
+            "no_preprune": false,
+            "leaf_prediction": "nba",
+            "nb_threshold": 0,
+            "nominal_attributes": null
         }
     }
 }

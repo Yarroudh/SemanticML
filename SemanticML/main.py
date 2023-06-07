@@ -120,7 +120,7 @@ class OrderedGroup(click.Group):
     def list_commands(self, ctx):
         return self.commands
 
-@click.group(cls=OrderedGroup, help="CLI tool to perform semantic segmentation of 3D point clouds using Machine Learning algorithms.")
+@click.group(cls=OrderedGroup, help="A package for semantic segmentation of 3D point clouds using Machine Learning algorithms.")
 def cli():
     pass
 

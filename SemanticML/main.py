@@ -17,8 +17,6 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-from skmultiflow.data import FileStream
-from skmultiflow.trees import HoeffdingTreeClassifier
 
 def train_model(method, X_train, Y_train, **kwargs):
     '''
@@ -38,79 +36,54 @@ def train_model(method, X_train, Y_train, **kwargs):
     :return: The trained classification model.
     :rtype: object
     '''
-    if (method == "RandomForest") or (method == "GradientBoosting"):
-        if (method == "RandomForest"):
-            n_estimators = kwargs.get('n_estimators', None)
-            max_depth = kwargs.get('max_depth', None)
-            n_jobs = kwargs.get('n_jobs', None)
-            criterion = kwargs.get('criterion', None)
-            min_samples_split = kwargs.get('min_samples_split', None)
-            min_samples_leaf = kwargs.get('min_samples_leaf', None)
-            min_weight_fraction_leaf = kwargs.get('min_weight_fraction_leaf', None)
-            max_features = kwargs.get('max_features', None)
-            max_leaf_nodes = kwargs.get('max_leaf_nodes', None)
-            min_impurity_decrease = kwargs.get('min_impurity_decrease', None)
-            bootstrap = kwargs.get('bootstrap', None)
-            oob_score = kwargs.get('oob_score', None)
-            random_state = kwargs.get('random_state', None)
-            verbose = kwargs.get('verbose', None)
-            warm_start = kwargs.get('warm_start', None)
-            class_weight = kwargs.get('class_weight', None)
-            ccp_alpha = kwargs.get('ccp_alpha', None)
-            max_samples = kwargs.get('max_samples', None)
+    if (method == "RandomForest"):
+       n_estimators = kwargs.get('n_estimators', None)
+       max_depth = kwargs.get('max_depth', None)
+       n_jobs = kwargs.get('n_jobs', None)
+       criterion = kwargs.get('criterion', None)
+       min_samples_split = kwargs.get('min_samples_split', None)
+       min_samples_leaf = kwargs.get('min_samples_leaf', None)
+       min_weight_fraction_leaf = kwargs.get('min_weight_fraction_leaf', None)
+       max_features = kwargs.get('max_features', None)
+       max_leaf_nodes = kwargs.get('max_leaf_nodes', None)
+       min_impurity_decrease = kwargs.get('min_impurity_decrease', None)
+       bootstrap = kwargs.get('bootstrap', None)
+       oob_score = kwargs.get('oob_score', None)
+       random_state = kwargs.get('random_state', None)
+       verbose = kwargs.get('verbose', None)
+       warm_start = kwargs.get('warm_start', None)
+       class_weight = kwargs.get('class_weight', None)
+       ccp_alpha = kwargs.get('ccp_alpha', None)
+       max_samples = kwargs.get('max_samples', None)
 
-            model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, criterion=criterion, min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf, min_weight_fraction_leaf=min_weight_fraction_leaf, max_features=max_features, max_leaf_nodes=max_leaf_nodes, min_impurity_decrease=min_impurity_decrease, bootstrap=bootstrap, oob_score=oob_score, n_jobs=n_jobs, random_state=random_state, verbose=verbose, warm_start=warm_start, class_weight=class_weight, ccp_alpha=ccp_alpha, max_samples=max_samples)
+       model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, criterion=criterion, min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf, min_weight_fraction_leaf=min_weight_fraction_leaf, max_features=max_features, max_leaf_nodes=max_leaf_nodes, min_impurity_decrease=min_impurity_decrease, bootstrap=bootstrap, oob_score=oob_score, n_jobs=n_jobs, random_state=random_state, verbose=verbose, warm_start=warm_start, class_weight=class_weight, ccp_alpha=ccp_alpha, max_samples=max_samples)
     
-        elif (method == "GradientBoosting"):
-            loss = kwargs.get('loss', None)
-            learning_rate = kwargs.get('learning_rate', None)
-            n_estimators = kwargs.get('n_estimators', None)
-            subsample = kwargs.get('subsample', None)
-            criterion = kwargs.get('criterion', None)
-            min_samples_split = kwargs.get('min_samples_split', None)
-            min_samples_leaf = kwargs.get('min_samples_leaf', None)
-            min_weight_fraction_leaf = kwargs.get('min_weight_fraction_leaf', None)
-            max_depth = kwargs.get('max_depths', None)
-            min_impurity_decrease = kwargs.get('min_impurity_decrease', None)
-            init = kwargs.get('init', None)
-            random_state = kwargs.get('random_state', None)
-            max_features = kwargs.get('max_features', None)
-            verbose = kwargs.get('verbose', None)
-            max_leaf_nodes = kwargs.get('max_leaf_nodes', None)
-            warm_start = kwargs.get('warm_start', None)
-            validation_fraction = kwargs.get('validation_fraction', None)
-            n_iter_no_change = kwargs.get('n_iter_no_change', None)
-            tol = kwargs.get('tol', None)
-            ccp_alpha = kwargs.get('ccp_alpha', None)
+    elif (method == "GradientBoosting"):
+       loss = kwargs.get('loss', None)
+       learning_rate = kwargs.get('learning_rate', None)
+       n_estimators = kwargs.get('n_estimators', None)
+       subsample = kwargs.get('subsample', None)
+       criterion = kwargs.get('criterion', None)
+       min_samples_split = kwargs.get('min_samples_split', None)
+       min_samples_leaf = kwargs.get('min_samples_leaf', None)
+       min_weight_fraction_leaf = kwargs.get('min_weight_fraction_leaf', None)
+       max_depth = kwargs.get('max_depths', None)
+       min_impurity_decrease = kwargs.get('min_impurity_decrease', None)
+       init = kwargs.get('init', None)
+       random_state = kwargs.get('random_state', None)
+       max_features = kwargs.get('max_features', None)
+       verbose = kwargs.get('verbose', None)
+       max_leaf_nodes = kwargs.get('max_leaf_nodes', None)
+       warm_start = kwargs.get('warm_start', None)
+       validation_fraction = kwargs.get('validation_fraction', None)
+       n_iter_no_change = kwargs.get('n_iter_no_change', None)
+       tol = kwargs.get('tol', None)
+       ccp_alpha = kwargs.get('ccp_alpha', None)
 
-            model = GradientBoostingClassifier(loss=loss, learning_rate=learning_rate, n_estimators=n_estimators, subsample=subsample, criterion=criterion, min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf, min_weight_fraction_leaf=min_weight_fraction_leaf, max_depth=max_depth, min_impurity_decrease=min_impurity_decrease, init=init, random_state=random_state, max_features=max_features, verbose=verbose, max_leaf_nodes=max_leaf_nodes, warm_start=warm_start, validation_fraction=validation_fraction, n_iter_no_change=n_iter_no_change, tol=tol, ccp_alpha=ccp_alpha)
+       model = GradientBoostingClassifier(loss=loss, learning_rate=learning_rate, n_estimators=n_estimators, subsample=subsample, criterion=criterion, min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf, min_weight_fraction_leaf=min_weight_fraction_leaf, max_depth=max_depth, min_impurity_decrease=min_impurity_decrease, init=init, random_state=random_state, max_features=max_features, verbose=verbose, max_leaf_nodes=max_leaf_nodes, warm_start=warm_start, validation_fraction=validation_fraction, n_iter_no_change=n_iter_no_change, tol=tol, ccp_alpha=ccp_alpha)
 
-        model.fit(X_train, Y_train)
-        return model
-
-    elif (method == "HoeffdingTree"):
-        chunk_size = kwargs.get('chunk_size', None)
-        max_byte_size = kwargs.get('max_byte_size', None)
-        memory_estimate_period = kwargs.get('memory_estimate_period', None)
-        grace_period = kwargs.get('grace_period', None)
-        split_criterion = kwargs.get('split_criterion', None)
-        split_confidence = kwargs.get('split_confidence', None)
-        tie_threshold = kwargs.get('tie_threshold', None)
-        binary_split = kwargs.get('binary_split', None)
-        stop_mem_management = kwargs.get('stop_mem_management', None)
-        remove_poor_atts = kwargs.get('remove_poor_atts', None)
-        no_preprune = kwargs.get('no_preprune', None)
-        leaf_prediction = kwargs.get('leaf_prediction', None)
-        nb_threshold = kwargs.get('nb_threshold', None)
-        nominal_attributes = kwargs.get('nomainal_attributes', None)
-
-        data_stream = FileStream(X=X_train, y=Y_train)
-        classifier = HoeffdingTreeClassifier()
-
-        num_chunks = len(X_train) // chunk_size
-        for chunk_idx in range(num_chunks):
-            X_chunk, y_chunk = data_stream.next_sample(chunk_size)
-            classifier.partial_fit(X_chunk, y_chunk)
+    model.fit(X_train, Y_train)
+    return model
 
 
 def save_model(model, filename):
